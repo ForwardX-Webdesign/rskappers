@@ -311,6 +311,16 @@ a:hover { text-decoration: underline; }
 .kaart-icoon {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: var(--kleur-accent);
+}
+
+.kaart-icoon i {
+  color: var(--kleur-accent);
+}
+
+.prijzen-categorie-header i {
+  color: var(--kleur-accent);
+  font-size: 1.2rem;
 }
 
 /* ── Prijzen pagina ────────────────────────── */
