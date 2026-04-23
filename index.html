@@ -22,7 +22,7 @@
         <img src="logo.png" alt="RS Kappers logo" />
       </a>
       <nav aria-label="Hoofdnavigatie">
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
           <li><a href="index.html" class="actief">Home</a></li>
           <li><a href="#diensten">Diensten</a></li>
           <li><a href="prijzen.html">Prijzen</a></li>
@@ -30,8 +30,28 @@
         </ul>
       </nav>
       <a href="https://widget.salonhub.nl/a/d.html?client=rskappers&salon=barendrecht&command=create" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:.85rem;padding:.6rem 1.4rem;">Afspraak maken</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu openen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('hamburger');
+      const nav = document.getElementById('navLinks');
+      btn.addEventListener('click', function () {
+        const open = nav.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open);
+      });
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        nav.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', false);
+      }));
+    })();
+  </script>
 
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero">
@@ -191,6 +211,26 @@
       buildDots();
     })();
   </script>
+
+  <!-- ═══════════ IMPRESSIE ═══════════ -->
+  <section class="sectie">
+    <div class="container">
+      <span class="sectie-label" style="display:block;text-align:center;">Onze salon</span>
+      <h2 class="sectie-titel">Impressie</h2>
+      <div class="divider"></div>
+      <div class="impressie-grid">
+        <div class="impressie-foto groot">
+          <img src="rskappers4.jpg" alt="RS Kappers salon interieur Barendrecht" />
+        </div>
+        <div class="impressie-foto">
+          <img src="47182085_475071423020222_1668152784028233706_n.jpg" alt="Behandeling bij RS Kappers" />
+        </div>
+        <div class="impressie-foto">
+          <img src="cta-salon.jpg" alt="Sfeer bij RS Kappers" />
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══════════ CONTACT ═══════════ -->
   <section class="sectie" id="contact">
