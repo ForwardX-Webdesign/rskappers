@@ -531,10 +531,10 @@ a:hover { text-decoration: underline; }
   color: var(--kleur-subtekst);
 }
 
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+.review-kaart {
+  flex: 0 0 calc(33.333% - 1rem);
+  min-width: 260px;
+  scroll-snap-align: start;
 }
 
 .review-kaart {
@@ -588,9 +588,6 @@ a:hover { text-decoration: underline; }
   color: var(--kleur-subtekst);
 }
 
-@media (max-width: 768px) {
-  .reviews-grid { grid-template-columns: 1fr; }
-}
 
 /* ── Hamburger ──────────────────────────────── */
 .hamburger {

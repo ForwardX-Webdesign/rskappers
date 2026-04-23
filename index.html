@@ -227,51 +227,94 @@
         <span class="reviews-bron"><img src="https://www.google.com/favicon.ico" alt="Google" width="16" height="16" style="vertical-align:middle;margin-right:.3rem;">op Google</span>
       </div>
 
-      <div class="reviews-grid">
+      <div class="carr-outer">
+        <div class="carr-track" id="reviewsTrack">
 
-        <div class="review-kaart">
-          <div class="review-sterren">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          </div>
-          <p class="review-tekst">"Vanmiddag voor het eerst hier geweest en het voelde alsof ik er al jaren over de vloer kwam. Voor mij is naar de kapper gaan echt een lastig ding. Door mijn fijne ervaring heb ik gelijk een vervolg afspraak gemaakt. Echt top — voel me thuis. Er werd een drankje aangeboden en daarna is er wat advies gegeven maar lag de keuze nog steeds bij mij. Heel erg tevreden met het resultaat en de service, ik ga zeker nog eens terug!"</p>
-          <div class="review-auteur">
-            <div class="review-avatar">J</div>
-            <div>
-              <strong>José Rogaar</strong>
-              <span>2 jaar geleden</span>
+          <div class="review-kaart">
+            <div class="review-sterren">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="review-tekst">"Vanmiddag voor het eerst hier geweest en het voelde alsof ik er al jaren over de vloer kwam. Voor mij is naar de kapper gaan echt een lastig ding. Door mijn fijne ervaring heb ik gelijk een vervolg afspraak gemaakt. Echt top — voel me thuis. Er werd een drankje aangeboden en daarna is er wat advies gegeven maar lag de keuze nog steeds bij mij. Heel erg tevreden met het resultaat en de service, ik ga zeker nog eens terug!"</p>
+            <div class="review-auteur">
+              <div class="review-avatar">J</div>
+              <div>
+                <strong>José Rogaar</strong>
+                <span>2 jaar geleden</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="review-kaart">
-          <div class="review-sterren">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          </div>
-          <p class="review-tekst">"Richard is de beste kapper die ik ooit heb gekend. Hij neemt voor jou de tijd, praat gezellig met je en maakt er iets moois van. Aanrader, met name als je alopecia hebt net zoals ik!"</p>
-          <div class="review-auteur">
-            <div class="review-avatar">M</div>
-            <div>
-              <strong>Myrthe Diana Van der Ven</strong>
-              <span>2 jaar geleden</span>
+          <div class="review-kaart">
+            <div class="review-sterren">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="review-tekst">"Richard is de beste kapper die ik ooit heb gekend. Hij neemt voor jou de tijd, praat gezellig met je en maakt er iets moois van. Aanrader, met name als je alopecia hebt net zoals ik!"</p>
+            <div class="review-auteur">
+              <div class="review-avatar">M</div>
+              <div>
+                <strong>Myrthe Diana Van der Ven</strong>
+                <span>2 jaar geleden</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="review-kaart">
-          <div class="review-sterren">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          </div>
-          <p class="review-tekst">"Top zaak, Richard is een zeer fijne kapper die zijn vak nog verstaat."</p>
-          <div class="review-auteur">
-            <div class="review-avatar">V</div>
-            <div>
-              <strong>Vinnie</strong>
-              <span>10 maanden geleden · Local Guide</span>
+          <div class="review-kaart">
+            <div class="review-sterren">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="review-tekst">"Top zaak, Richard is een zeer fijne kapper die zijn vak nog verstaat."</p>
+            <div class="review-auteur">
+              <div class="review-avatar">V</div>
+              <div>
+                <strong>Vinnie</strong>
+                <span>10 maanden geleden · Local Guide</span>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
+        <div class="carr-controls">
+          <button class="carr-pijl" id="prevReview" aria-label="Vorige">&#8249;</button>
+          <div class="carr-dots" id="reviewDots"></div>
+          <button class="carr-pijl" id="nextReview" aria-label="Volgende">&#8250;</button>
+        </div>
       </div>
+
+      <script>
+        (function () {
+          const track = document.getElementById('reviewsTrack');
+          const dotsEl = document.getElementById('reviewDots');
+          const prev = document.getElementById('prevReview');
+          const next = document.getElementById('nextReview');
+          const cards = track.querySelectorAll('.review-kaart');
+
+          function cardW() { return cards[0].offsetWidth + 24; }
+          function visibleCount() { return Math.max(1, Math.round(track.offsetWidth / cardW())); }
+          function totalPages() { return Math.ceil(cards.length / visibleCount()); }
+          function currentPage() { return Math.round(track.scrollLeft / (cardW() * visibleCount())); }
+
+          function buildDots() {
+            dotsEl.innerHTML = '';
+            for (let i = 0; i < totalPages(); i++) {
+              const d = document.createElement('button');
+              d.className = 'carr-dot' + (i === 0 ? ' actief' : '');
+              d.setAttribute('aria-label', 'Pagina ' + (i + 1));
+              d.addEventListener('click', () => track.scrollTo({ left: i * visibleCount() * cardW(), behavior: 'smooth' }));
+              dotsEl.appendChild(d);
+            }
+          }
+
+          function updateDots() {
+            dotsEl.querySelectorAll('.carr-dot').forEach((d, i) => d.classList.toggle('actief', i === currentPage()));
+          }
+
+          prev.addEventListener('click', () => track.scrollBy({ left: -cardW() * visibleCount(), behavior: 'smooth' }));
+          next.addEventListener('click', () => track.scrollBy({ left:  cardW() * visibleCount(), behavior: 'smooth' }));
+          track.addEventListener('scroll', updateDots);
+          window.addEventListener('resize', buildDots);
+          buildDots();
+        })();
+      </script>
 
       <div style="text-align:center;margin-top:2rem;">
         <a href="https://www.google.com/maps/place/R.S.+Kappers+B.V." target="_blank" rel="noopener" class="btn" style="border:2px solid var(--kleur-accent);color:var(--kleur-accent);font-size:.88rem;">Bekijk alle reviews op Google →</a>
