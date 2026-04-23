@@ -235,6 +235,7 @@
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
             <p class="review-tekst">"Vanmiddag voor het eerst hier geweest en het voelde alsof ik er al jaren over de vloer kwam. Voor mij is naar de kapper gaan echt een lastig ding. Door mijn fijne ervaring heb ik gelijk een vervolg afspraak gemaakt. Echt top — voel me thuis. Er werd een drankje aangeboden en daarna is er wat advies gegeven maar lag de keuze nog steeds bij mij. Heel erg tevreden met het resultaat en de service, ik ga zeker nog eens terug!"</p>
+            <button class="review-meer">Lees meer</button>
             <div class="review-auteur">
               <div class="review-avatar">J</div>
               <div>
@@ -249,6 +250,7 @@
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
             <p class="review-tekst">"Richard is de beste kapper die ik ooit heb gekend. Hij neemt voor jou de tijd, praat gezellig met je en maakt er iets moois van. Aanrader, met name als je alopecia hebt net zoals ik!"</p>
+            <button class="review-meer">Lees meer</button>
             <div class="review-auteur">
               <div class="review-avatar">M</div>
               <div>
@@ -263,6 +265,7 @@
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
             <p class="review-tekst">"Top zaak, Richard is een zeer fijne kapper die zijn vak nog verstaat."</p>
+            <button class="review-meer">Lees meer</button>
             <div class="review-auteur">
               <div class="review-avatar">V</div>
               <div>
@@ -313,6 +316,17 @@
           track.addEventListener('scroll', updateDots);
           window.addEventListener('resize', buildDots);
           buildDots();
+
+          track.querySelectorAll('.review-meer').forEach(btn => {
+            const tekst = btn.previousElementSibling;
+            if (tekst.scrollHeight <= tekst.clientHeight + 4) {
+              btn.style.display = 'none';
+            }
+            btn.addEventListener('click', () => {
+              const open = tekst.classList.toggle('open');
+              btn.textContent = open ? 'Lees minder' : 'Lees meer';
+            });
+          });
         })();
       </script>
 
