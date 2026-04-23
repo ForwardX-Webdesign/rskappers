@@ -13,20 +13,178 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    .prijzen-intro {
-      max-width: 640px;
-      margin: 0 auto 3.5rem;
-      text-align: center;
+
+    /* ── Prijzen sectie licht ── */
+    .prijzen-donker {
+      background: var(--kleur-beige);
+      padding: 5rem 1.5rem;
     }
-    .opmerking-banner {
-      background: #fdf6ea;
-      border-left: 4px solid var(--kleur-accent);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      padding: 1rem 1.5rem;
-      margin-top: 2.5rem;
+
+    .prijzen-donker .sectie-label {
+      display: block;
+      text-align: center;
+      margin-bottom: .75rem;
+    }
+
+    .prijzen-intro-sub {
+      text-align: center;
+      color: var(--kleur-subtekst);
+      font-size: .95rem;
+      max-width: 520px;
+      margin: 0 auto 3rem;
+    }
+
+    /* ── Twee-kolom layout ── */
+    .prijzen-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* ── Witte kaart (links) ── */
+    .pkaart {
+      background: #fff;
+      border: 1px solid var(--kleur-beige2);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--schaduw);
+    }
+
+    .pkaart-titel {
+      font-family: var(--font-hoofd);
+      font-size: 1.25rem;
+      color: var(--kleur-donker);
+      padding: 1.4rem 1.75rem 1.1rem;
+      border-bottom: 1px solid var(--kleur-beige2);
+    }
+
+    /* ── Categorie subkop binnen kaart ── */
+    .pcat-label {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--kleur-accent);
+      padding: 1.1rem 1.75rem .4rem;
+    }
+
+    /* ── Regelrij ── */
+    .pregel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .65rem 1.75rem;
+      border-bottom: 1px solid var(--kleur-beige2);
+      font-size: .9rem;
+      color: var(--kleur-tekst);
+      gap: 1rem;
+    }
+    .pregel:last-child {
+      border-bottom: none;
+    }
+    .pregel-naam { flex: 1; line-height: 1.4; }
+    .pregel-naam small {
+      display: block;
+      font-size: .75rem;
+      color: var(--kleur-subtekst);
+      margin-top: .1rem;
+    }
+    .pregel-prijs {
+      font-weight: 700;
+      color: var(--kleur-accent);
+      white-space: nowrap;
+      font-size: .95rem;
+    }
+
+    /* ── Uitgelichte kaart (rechtsboven) ── */
+    .pkaart-featured {
+      background: #fff;
+      border: 2px solid var(--kleur-accent);
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 6px 28px rgba(201,169,110,.15);
+    }
+
+    .pkaart-featured .feat-naam {
+      font-family: var(--font-hoofd);
+      font-size: 1.35rem;
+      color: var(--kleur-donker);
+      margin-bottom: .3rem;
+    }
+
+    .pkaart-featured .feat-sub {
+      font-size: .85rem;
+      color: var(--kleur-subtekst);
+      margin-bottom: 1.25rem;
+    }
+
+    .feat-lijst {
+      list-style: none;
+      margin-bottom: 0;
+    }
+    .feat-lijst li {
       font-size: .88rem;
-      color: #7a5e35;
-      line-height: 1.6;
+      color: var(--kleur-tekst);
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--kleur-beige2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .feat-lijst li:last-child { border-bottom: none; }
+    .feat-prijs {
+      font-weight: 700;
+      color: var(--kleur-accent);
+      white-space: nowrap;
+      margin-left: 1rem;
+      font-size: .92rem;
+    }
+
+    /* ── Kleine kaartjes (rechtsonder) ── */
+    .pkaart-klein {
+      background: #fff;
+      border: 1px solid var(--kleur-beige2);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--schaduw);
+    }
+
+    .pkaart-klein .pkaart-titel {
+      font-size: 1.1rem;
+      padding: 1.1rem 1.5rem .9rem;
+    }
+
+    .pkaart-klein .pregel {
+      padding: .6rem 1.5rem;
+      font-size: .87rem;
+    }
+
+    .rechts-kolom {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .klein-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    /* ── Opmerking ── */
+    .prijzen-opmerking {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: .82rem;
+      color: var(--kleur-subtekst);
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .prijzen-layout { grid-template-columns: 1fr; }
+      .klein-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -46,7 +204,7 @@
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
-      <a href="tel:0180619811" class="btn btn-primary" style="font-size:.85rem;padding:.6rem 1.4rem;">Afspraak maken</a>
+      <a href="https://widget.salonhub.nl/a/d.html?client=rskappers&salon=barendrecht&command=create" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:.85rem;padding:.6rem 1.4rem;">Afspraak maken</a>
     </div>
   </header>
 
@@ -59,194 +217,168 @@
       <h1>Onze Prijzen</h1>
       <p>Eerlijke tarieven, topkwaliteit. Hieronder vind je een compleet overzicht van al onze diensten en tarieven.</p>
       <div class="hero-knoppen">
-        <a href="tel:0180619811" class="btn btn-primary"><i class="fa-solid fa-phone"></i> Direct afspreken</a>
+        <a href="https://widget.salonhub.nl/a/d.html?client=rskappers&salon=barendrecht&command=create" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Afspraak maken</a>
         <a href="index.html" class="btn btn-outline">Terug naar home</a>
       </div>
     </div>
   </section>
 
   <!-- ═══════════ PRIJSLIJST ═══════════ -->
-  <section class="sectie sectie-licht">
+  <section class="prijzen-donker">
     <div class="container">
 
-      <div class="prijzen-intro">
-        <span class="sectie-label">Prijslijst 2026</span>
-        <h2>Wat kost het?</h2>
-        <div class="divider"></div>
-        <p>Alle genoemde prijzen zijn inclusief BTW. Twijfel je over welke behandeling bij je past? We adviseren je graag persoonlijk — bel ons of kom langs.</p>
-      </div>
+      <span class="sectie-label">Prijslijst 2026</span>
+      <h2 class="sectie-titel">Diensten &amp; tarieven</h2>
+      <div class="divider"></div>
+      <p class="prijzen-intro-sub">Alle prijzen zijn inclusief BTW. Twijfel je over welke behandeling bij jou past? We adviseren je graag — bel ons of kom langs.</p>
 
-      <div class="prijzen-grid">
+      <div class="prijzen-layout">
 
-        <!-- DAMES -->
-        <div class="prijzen-categorie">
-          <div class="prijzen-categorie-header">
-            <span><i class="fa-solid fa-scissors"></i></span>
-            <h3>Knippen Dames</h3>
+        <!-- ═══ LINKS: Knippen ═══ -->
+        <div class="pkaart">
+          <div class="pkaart-titel">Knippen &amp; Stylen</div>
+
+          <div class="pcat-label">Dames</div>
+          <div class="pregel">
+            <span class="pregel-naam">Wassen, knippen &amp; föhnen</span>
+            <span class="pregel-prijs">€ 45,–</span>
           </div>
-          <ul class="prijzen-lijst">
-            <li>
-              <span>Wassen, knippen &amp; föhnen</span>
-              <span class="prijs">€ 45,–</span>
-            </li>
-            <li>
-              <span>Knippen (droog)<br><span class="prijs-opmerking">Zonder wassen en föhnen</span></span>
-              <span class="prijs">€ 30,–</span>
-            </li>
-            <li>
-              <span>Wassen &amp; föhnen<br><span class="prijs-opmerking">Zonder knippen</span></span>
-              <span class="prijs">€ 25,–</span>
-            </li>
-            <li>
-              <span>Opsteken / feestkapsel</span>
-              <span class="prijs">v.a. € 35,–</span>
-            </li>
-          </ul>
+          <div class="pregel">
+            <span class="pregel-naam">Knippen (droog)<small>Zonder wassen en föhnen</small></span>
+            <span class="pregel-prijs">€ 30,–</span>
+          </div>
+          <div class="pregel">
+            <span class="pregel-naam">Wassen &amp; föhnen<small>Zonder knippen</small></span>
+            <span class="pregel-prijs">€ 25,–</span>
+          </div>
+          <div class="pregel">
+            <span class="pregel-naam">Opsteken / feestkapsel</span>
+            <span class="pregel-prijs">v.a. € 35,–</span>
+          </div>
+
+          <div class="pcat-label">Heren</div>
+          <div class="pregel">
+            <span class="pregel-naam">Knippen heren</span>
+            <span class="pregel-prijs">€ 22,–</span>
+          </div>
+          <div class="pregel">
+            <span class="pregel-naam">Wassen + knippen</span>
+            <span class="pregel-prijs">€ 26,–</span>
+          </div>
+          <div class="pregel">
+            <span class="pregel-naam">Knippen + baard trimmen</span>
+            <span class="pregel-prijs">€ 30,–</span>
+          </div>
+          <div class="pregel">
+            <span class="pregel-naam">Baard trimmen<small>Zonder knippen</small></span>
+            <span class="pregel-prijs">€ 12,–</span>
+          </div>
+
+          <div class="pcat-label">Kinderen</div>
+          <div class="pregel">
+            <span class="pregel-naam">t/m 4 jaar</span>
+            <span class="pregel-prijs">€ 12,–</span>
+          </div>
+          <div class="pregel">
+            <span class="pregel-naam">5 t/m 10 jaar</span>
+            <span class="pregel-prijs">€ 16,–</span>
+          </div>
+          <div class="pregel">
+            <span class="pregel-naam">11 t/m 14 jaar</span>
+            <span class="pregel-prijs">€ 20,–</span>
+          </div>
+          <div class="pregel">
+            <span class="pregel-naam">15 t/m 17 jaar</span>
+            <span class="pregel-prijs">€ 25,–</span>
+          </div>
         </div>
 
-        <!-- HEREN -->
-        <div class="prijzen-categorie">
-          <div class="prijzen-categorie-header">
-            <span><i class="fa-solid fa-user-large"></i></span>
-            <h3>Knippen Heren</h3>
+        <!-- ═══ RECHTS: Kleuren + Behandelingen + Bruid ═══ -->
+        <div class="rechts-kolom">
+
+          <!-- Uitgelichte kaart: Kleuren -->
+          <div class="pkaart-featured">
+            <div class="feat-naam">Kleuren &amp; Highlights</div>
+            <div class="feat-sub">Professioneel geverfd met Keune producten</div>
+            <ul class="feat-lijst">
+              <li>
+                <span>Haarverf (1 kleur) — kort haar</span>
+                <span class="feat-prijs">v.a. € 45,–</span>
+              </li>
+              <li>
+                <span>Haarverf (1 kleur) — lang haar</span>
+                <span class="feat-prijs">v.a. € 65,–</span>
+              </li>
+              <li>
+                <span>Highlights / lowlights gedeeltelijk</span>
+                <span class="feat-prijs">v.a. € 55,–</span>
+              </li>
+              <li>
+                <span>Highlights / lowlights volledig</span>
+                <span class="feat-prijs">v.a. € 85,–</span>
+              </li>
+              <li>
+                <span>Balayage / ombré</span>
+                <span class="feat-prijs">v.a. € 95,–</span>
+              </li>
+              <li>
+                <span>Toning / gloss</span>
+                <span class="feat-prijs">v.a. € 35,–</span>
+              </li>
+            </ul>
           </div>
-          <ul class="prijzen-lijst">
-            <li>
-              <span>Knippen heren</span>
-              <span class="prijs">€ 22,–</span>
-            </li>
-            <li>
-              <span>Knippen + baard trimmen</span>
-              <span class="prijs">€ 30,–</span>
-            </li>
-            <li>
-              <span>Wassen + knippen</span>
-              <span class="prijs">€ 26,–</span>
-            </li>
-            <li>
-              <span>Baard trimmen<br><span class="prijs-opmerking">Zonder knippen</span></span>
-              <span class="prijs">€ 12,–</span>
-            </li>
-          </ul>
-        </div>
 
-        <!-- KINDEREN -->
-        <div class="prijzen-categorie">
-          <div class="prijzen-categorie-header">
-            <span><i class="fa-solid fa-child"></i></span>
-            <h3>Knippen Kinderen</h3>
-          </div>
-          <ul class="prijzen-lijst">
-            <li>
-              <span>t/m 4 jaar</span>
-              <span class="prijs">€ 12,–</span>
-            </li>
-            <li>
-              <span>5 t/m 10 jaar</span>
-              <span class="prijs">€ 16,–</span>
-            </li>
-            <li>
-              <span>11 t/m 14 jaar</span>
-              <span class="prijs">€ 20,–</span>
-            </li>
-            <li>
-              <span>15 t/m 17 jaar</span>
-              <span class="prijs">€ 25,–</span>
-            </li>
-          </ul>
-        </div>
+          <!-- Kleine kaartjes -->
+          <div class="klein-grid">
 
-        <!-- KLEUREN -->
-        <div class="prijzen-categorie">
-          <div class="prijzen-categorie-header">
-            <span><i class="fa-solid fa-palette"></i></span>
-            <h3>Kleuren</h3>
-          </div>
-          <ul class="prijzen-lijst">
-            <li>
-              <span>Haarverf (1 kleur) — kort haar</span>
-              <span class="prijs">v.a. € 45,–</span>
-            </li>
-            <li>
-              <span>Haarverf (1 kleur) — lang haar</span>
-              <span class="prijs">v.a. € 65,–</span>
-            </li>
-            <li>
-              <span>Highlights / lowlights<br><span class="prijs-opmerking">Gedeeltelijk</span></span>
-              <span class="prijs">v.a. € 55,–</span>
-            </li>
-            <li>
-              <span>Highlights / lowlights<br><span class="prijs-opmerking">Volledig</span></span>
-              <span class="prijs">v.a. € 85,–</span>
-            </li>
-            <li>
-              <span>Balayage / ombré</span>
-              <span class="prijs">v.a. € 95,–</span>
-            </li>
-            <li>
-              <span>Toning / gloss</span>
-              <span class="prijs">v.a. € 35,–</span>
-            </li>
-          </ul>
-        </div>
+            <!-- Behandelingen -->
+            <div class="pkaart-klein">
+              <div class="pkaart-titel">Behandelingen</div>
+              <div class="pregel">
+                <span class="pregel-naam">Haarmasker (Keune)</span>
+                <span class="pregel-prijs">€ 20,–</span>
+              </div>
+              <div class="pregel">
+                <span class="pregel-naam">Hoofdhuidbehandeling</span>
+                <span class="pregel-prijs">€ 35,–</span>
+              </div>
+              <div class="pregel">
+                <span class="pregel-naam">Permanent golven</span>
+                <span class="pregel-prijs">v.a. € 75,–</span>
+              </div>
+              <div class="pregel">
+                <span class="pregel-naam">Keratine behandeling</span>
+                <span class="pregel-prijs">v.a. € 120,–</span>
+              </div>
+            </div>
 
-        <!-- BEHANDELINGEN -->
-        <div class="prijzen-categorie">
-          <div class="prijzen-categorie-header">
-            <span><i class="fa-solid fa-wand-sparkles"></i></span>
-            <h3>Behandelingen</h3>
-          </div>
-          <ul class="prijzen-lijst">
-            <li>
-              <span>Haarmasker (Keune)<br><span class="prijs-opmerking">Intensieve verzorging</span></span>
-              <span class="prijs">€ 20,–</span>
-            </li>
-            <li>
-              <span>Keratine behandeling<br><span class="prijs-opmerking">Strak &amp; glanzend haar</span></span>
-              <span class="prijs">v.a. € 120,–</span>
-            </li>
-            <li>
-              <span>Hoofdhuidbehandeling</span>
-              <span class="prijs">€ 35,–</span>
-            </li>
-            <li>
-              <span>Permanent golven</span>
-              <span class="prijs">v.a. € 75,–</span>
-            </li>
-          </ul>
-        </div>
+            <!-- Bruid -->
+            <div class="pkaart-klein">
+              <div class="pkaart-titel">Bruid &amp; Gelegenheid</div>
+              <div class="pregel">
+                <span class="pregel-naam">Bruidsmeisje kapsel</span>
+                <span class="pregel-prijs">v.a. € 45,–</span>
+              </div>
+              <div class="pregel">
+                <span class="pregel-naam">Feestkapsel / opsteken</span>
+                <span class="pregel-prijs">v.a. € 55,–</span>
+              </div>
+              <div class="pregel">
+                <span class="pregel-naam">Proefkapsel</span>
+                <span class="pregel-prijs">v.a. € 65,–</span>
+              </div>
+              <div class="pregel">
+                <span class="pregel-naam">Bruidskapsel<small>Incl. proefkapsel</small></span>
+                <span class="pregel-prijs">v.a. € 150,–</span>
+              </div>
+            </div>
 
-        <!-- BRUID -->
-        <div class="prijzen-categorie">
-          <div class="prijzen-categorie-header">
-            <span><i class="fa-solid fa-ring"></i></span>
-            <h3>Bruid &amp; Gelegenheid</h3>
-          </div>
-          <ul class="prijzen-lijst">
-            <li>
-              <span>Bruidskapsel<br><span class="prijs-opmerking">Inclusief proefkapsel</span></span>
-              <span class="prijs">v.a. € 150,–</span>
-            </li>
-            <li>
-              <span>Proefkapsel</span>
-              <span class="prijs">v.a. € 65,–</span>
-            </li>
-            <li>
-              <span>Feestkapsel / opsteken</span>
-              <span class="prijs">v.a. € 55,–</span>
-            </li>
-            <li>
-              <span>Bruidsmeisje kapsel</span>
-              <span class="prijs">v.a. € 45,–</span>
-            </li>
-          </ul>
-        </div>
+          </div><!-- /.klein-grid -->
+        </div><!-- /.rechts-kolom -->
 
-      </div><!-- /.prijzen-grid -->
+      </div><!-- /.prijzen-layout -->
 
-      <div class="opmerking-banner">
-        <strong>Let op:</strong> Prijzen zijn indicatief en kunnen variëren op basis van haarlengte, haardikte en de benodigde hoeveelheid product. De definitieve prijs wordt altijd vooraf besproken. Alle prijzen zijn inclusief 21% BTW.
-      </div>
+      <p class="prijzen-opmerking">Prijzen zijn indicatief en kunnen variëren op basis van haarlengte, haardikte en benodigde hoeveelheid product.<br>De definitieve prijs wordt altijd vooraf besproken. Alle prijzen zijn inclusief 21% BTW.</p>
 
     </div>
   </section>
@@ -257,8 +389,8 @@
       <h2>Vragen of een afspraak maken?</h2>
       <p>Bel ons, stuur een mail of maak direct een afspraak via de Dé Kapper App. We helpen je graag.</p>
       <div class="cta-knoppen">
-        <a href="tel:0180619811" class="btn btn-primary"><i class="fa-solid fa-phone"></i> 0180-619811</a>
-        <a href="index.html#contact" class="btn btn-outline">Openingstijden bekijken</a>
+        <a href="https://widget.salonhub.nl/a/d.html?client=rskappers&salon=barendrecht&command=create" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Afspraak maken</a>
+        <a href="tel:0180619811" class="btn btn-outline"><i class="fa-solid fa-phone"></i> 0180-619811</a>
       </div>
     </div>
   </section>
