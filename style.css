@@ -507,6 +507,91 @@ a:hover { text-decoration: underline; }
   transform: scale(1.3);
 }
 
+/* ── Reviews ────────────────────────────────── */
+.reviews-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  margin-bottom: 2.5rem;
+}
+.reviews-sterren i, .review-sterren i {
+  color: #f9a825;
+  font-size: 1rem;
+}
+.reviews-getal {
+  font-family: var(--font-hoofd);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--kleur-donker);
+  line-height: 1;
+}
+.reviews-bron {
+  font-size: .85rem;
+  color: var(--kleur-subtekst);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.review-kaart {
+  background: var(--kleur-wit);
+  border: 1px solid var(--kleur-beige2);
+  border-radius: 10px;
+  padding: 1.75rem;
+  box-shadow: var(--schaduw);
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+.review-sterren { display: flex; gap: .15rem; }
+
+.review-tekst {
+  font-size: .92rem;
+  color: var(--kleur-tekst);
+  line-height: 1.7;
+  flex: 1;
+  font-style: italic;
+  margin: 0;
+}
+
+.review-auteur {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-top: .25rem;
+}
+.review-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--kleur-accent);
+  color: var(--kleur-donker);
+  font-weight: 700;
+  font-size: .95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.review-auteur strong {
+  display: block;
+  font-size: .88rem;
+  color: var(--kleur-donker);
+}
+.review-auteur span {
+  font-size: .78rem;
+  color: var(--kleur-subtekst);
+}
+
+@media (max-width: 768px) {
+  .reviews-grid { grid-template-columns: 1fr; }
+}
+
 /* ── Hamburger ──────────────────────────────── */
 .hamburger {
   display: none;
